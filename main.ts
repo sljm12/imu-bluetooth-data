@@ -17,18 +17,17 @@ bluetooth.onBluetoothDisconnected(function () {
         `)
 })
 input.onButtonPressed(Button.A, function () {
-    bluetooth.uartWriteString("Test")
-})
-bluetooth.onUartDataReceived(serial.delimiters(Delimiters.NewLine), function () {
-    serial.writeLine("")
+	
 })
 bluetooth.startUartService()
 basic.forever(function () {
-    bluetooth.uartWriteNumber(input.magneticForce(Dimension.X))
+    bluetooth.uartWriteNumber(input.acceleration(Dimension.X))
     bluetooth.uartWriteString(" ")
-    bluetooth.uartWriteNumber(input.magneticForce(Dimension.Y))
+    bluetooth.uartWriteNumber(input.acceleration(Dimension.Y))
     bluetooth.uartWriteString(" ")
-    bluetooth.uartWriteNumber(input.magneticForce(Dimension.Z))
+    bluetooth.uartWriteNumber(input.acceleration(Dimension.Z))
+    bluetooth.uartWriteString(" ")
+    bluetooth.uartWriteNumber(input.acceleration(Dimension.Strength))
     bluetooth.uartWriteLine("")
     basic.pause(100)
 })
